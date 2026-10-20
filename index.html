@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
-<title>منيو كريبيانو</title>
+<title>منيو كربيانو</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lalezar&display=swap">
@@ -39,7 +39,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;transition:background-color .5s ease,color .5s ease}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band);transition:background-color .5s ease}
 [hidden]{display:none!important}
-button,input,textarea{font-family:inherit}
+button,input,textarea,select{font-family:inherit}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
@@ -193,8 +193,8 @@ button,input,textarea{font-family:inherit}
 .field{display:grid;gap:6px;margin-block-start:14px}
 .field label{font-weight:700;font-size:14px}
 .req{color:var(--red-text)}
-.field input,.field textarea{width:100%;font-size:16px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg);color:var(--ink);transition:border-color .2s,box-shadow .2s}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 4px rgba(225,29,46,.16)}
+.field input,.field textarea,.field select{width:100%;font-size:16px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 4px rgba(225,29,46,.16)}
 .field textarea{min-height:78px;resize:vertical}
 .err{margin:12px 0 0;color:var(--err);font-weight:700;font-size:14px}
 .send{display:flex;align-items:center;justify-content:center;gap:10px;margin-block-start:18px;padding:15px 16px;border-radius:16px;background:var(--wa);color:#fff;font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 10px 24px rgba(18,128,63,.35);transition:transform .15s}
@@ -278,14 +278,14 @@ button,input,textarea{font-family:inherit}
           </svg>
         </div>
         <div class="logo-text">
-          <h1 class="brand">كريبيانو</h1>
+          <h1 class="brand">كربيانو</h1>
           <span class="swoosh" aria-hidden="true"></span>
           <div class="latin" role="img" aria-label="CREPIANO"><span style="--i:0">C</span><span style="--i:1">R</span><span style="--i:2">E</span><span style="--i:3">P</span><span style="--i:4">I</span><span style="--i:5">A</span><span style="--i:6">N</span><span style="--i:7">O</span></div>
         </div>
       </div>
 
       <div class="info">
-        <ul class="meta"><li>كفر سعد - شارع المركز</li><li>واتساب <bdi dir="ltr">01148592380</bdi></li></ul>
+        <ul class="meta"><li>كفر سعد - شارع المركز</li><li>واتساب <bdi dir="ltr">01012189390</bdi> / <bdi dir="ltr">01093717161</bdi></li></ul>
         <p class="tag">اختر أصنافك، اكتب اسمك وعنوانك، ثم أرسل الطلب على واتساب.</p>
       </div>
 
@@ -320,7 +320,7 @@ button,input,textarea{font-family:inherit}
         <input id="q" type="search" placeholder="ابحث في المنيو: كريب، بيتزا، مانجو" aria-label="بحث في المنيو" autocomplete="off">
       </div>
       <div id="menu"></div>
-      <footer class="foot">الأسعار بالجنيه المصري. يصل الطلب عبر واتساب على <bdi dir="ltr">01148592380</bdi>.</footer>
+      <footer class="foot">الأسعار بالجنيه المصري. يصل الطلب عبر واتساب.</footer>
     </section>
 
     <aside class="cart" id="cart" aria-label="سلة الطلب">
@@ -332,6 +332,13 @@ button,input,textarea{font-family:inherit}
       <p class="empty" id="empty">السلة فارغة. اختر من المنيو وستظهر أصنافك هنا.</p>
       <div class="total" id="totalRow" hidden><span>الإجمالي</span><strong id="total">0 ج</strong></div>
 
+      <div class="field">
+        <label for="f-phone">إرسال الطلب إلى رقم <span class="req">*</span></label>
+        <select id="f-phone">
+          <option value="201012189390">01012189390</option>
+          <option value="201093717161">01093717161</option>
+        </select>
+      </div>
       <div class="field">
         <label for="f-name">الاسم <span class="req">*</span></label>
         <input id="f-name" type="text" autocomplete="name" placeholder="اسمك الكامل">
@@ -355,7 +362,7 @@ button,input,textarea{font-family:inherit}
         <button type="button" class="ghost" id="clear" hidden>تفريغ السلة</button>
       </div>
       <textarea id="fallback" class="fallback" readonly hidden aria-label="نص الطلب للنسخ"></textarea>
-      <p class="hint">يفتح واتساب برسالة جاهزة على <bdi dir="ltr">01148592380</bdi>. اضغط إرسال داخل واتساب لتأكيد الطلب.</p>
+      <p class="hint">يفتح واتساب برسالة جاهزة. اضغط إرسال داخل واتساب لتأكيد الطلب.</p>
     </aside>
   </main>
 
@@ -368,7 +375,7 @@ button,input,textarea{font-family:inherit}
 <script>
 (function(){
 'use strict';
-var PHONE='201148592380', BRAND='كريبيانو', KEY='crepiano-order-v1';
+var BRAND='كربيانو', KEY='crepiano-order-v1';
 var $=function(s){return document.querySelector(s)};
 var i=function(n,p,d,e){return {n:n,p:p,d:d,e:e}};
 var v=function(n,o,d,e){return {n:n,o:o,d:d,e:e}};
@@ -520,7 +527,7 @@ CATS.forEach(function(c){c.items.forEach(function(it,k){it.id=c.id+':'+k;IDX[it.
 
 var st={group:'food',q:'',cart:{},open:false,active:''};
 var menu=$('#menu'),chips=$('#chips'),seg=$('#seg'),bar=$('#bar'),cart=$('#cart'),scrim=$('#scrim');
-var f={name:$('#f-name'),addr:$('#f-addr'),extra:$('#f-extra')};
+var f={phone:$('#f-phone'),name:$('#f-name'),addr:$('#f-addr'),extra:$('#f-extra')};
 var send=$('#send'),errEl=$('#err');
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -633,11 +640,11 @@ function buildMsg(){
   return ['*طلب جديد - '+BRAND+'*','──────────'].concat(lines,['──────────','*الإجمالي:* '+total+' جنيه','',
     '*الاسم:* '+f.name.value.trim(),'*العنوان:* '+f.addr.value.trim(),'*الإضافات:* '+(f.extra.value.trim()||'لا يوجد')]).join('\n');
 }
-function save(){try{localStorage.setItem(KEY,JSON.stringify({cart:st.cart,name:f.name.value,addr:f.addr.value,extra:f.extra.value}))}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({cart:st.cart,phone:f.phone.value,name:f.name.value,addr:f.addr.value,extra:f.extra.value}))}catch(e){}}
 function load(){
   try{
     var d=JSON.parse(localStorage.getItem(KEY)||'null');
-    if(d){st.cart=d.cart&&typeof d.cart==='object'?d.cart:{};f.name.value=d.name||'';f.addr.value=d.addr||'';f.extra.value=d.extra||''}
+    if(d){st.cart=d.cart&&typeof d.cart==='object'?d.cart:{};f.phone.value=d.phone||'201012189390';f.name.value=d.name||'';f.addr.value=d.addr||'';f.extra.value=d.extra||''}
   }catch(e){}
 }
 function renderCart(){
@@ -655,7 +662,7 @@ function renderCart(){
   $('#dtot').textContent=total+' ج';
   if(count===0&&st.open)openCart(false);
   send.setAttribute('aria-disabled',count===0?'true':'false');
-  send.href=count?'https://wa.me/'+PHONE+'?text='+encodeURIComponent(buildMsg()):'#';
+  send.href=count?'https://wa.me/'+f.phone.value+'?text='+encodeURIComponent(buildMsg()):'#';
   save();
 }
 function openCart(o){
@@ -675,7 +682,7 @@ $('#dockbtn').addEventListener('click',function(){openCart(true)});
 $('#close').addEventListener('click',function(){openCart(false)});
 scrim.addEventListener('click',function(){openCart(false)});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&st.open)openCart(false)});
-[f.name,f.addr,f.extra].forEach(function(el){el.addEventListener('input',function(){errEl.hidden=true;renderCart()})});
+[f.phone,f.name,f.addr,f.extra].forEach(function(el){el.addEventListener('input',function(){errEl.hidden=true;renderCart()});el.addEventListener('change',function(){errEl.hidden=true;renderCart()})});
 
 send.addEventListener('click',function(e){
   var msg='',focus=null;
@@ -794,3 +801,4 @@ if(cnt&&window.MutationObserver){
 </script>
 
 </body></html>
+
