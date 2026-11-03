@@ -285,7 +285,7 @@ button,input,textarea,select{font-family:inherit}
       </div>
 
       <div class="info">
-        <ul class="meta"><li>كفر سعد - شارع المركز</li><li>واتساب <bdi dir="ltr">01012189390</bdi> / <bdi dir="ltr">01093717161</bdi></li></ul>
+        <ul class="meta"><li>كفر سعد - شارع المركز</li><li>واتساب <bdi dir="ltr">01093717161</bdi></li></ul>
         <p class="tag">اختر أصنافك، اكتب اسمك وعنوانك، ثم أرسل الطلب على واتساب.</p>
       </div>
 
@@ -320,7 +320,7 @@ button,input,textarea,select{font-family:inherit}
         <input id="q" type="search" placeholder="ابحث في المنيو: كريب، بيتزا، مانجو" aria-label="بحث في المنيو" autocomplete="off">
       </div>
       <div id="menu"></div>
-      <footer class="foot">الأسعار بالجنيه المصري. يصل الطلب عبر واتساب.</footer>
+      <footer class="foot">سعر الأوردر غير شامل التوصيل</footer>
     </section>
 
     <aside class="cart" id="cart" aria-label="سلة الطلب">
@@ -332,13 +332,7 @@ button,input,textarea,select{font-family:inherit}
       <p class="empty" id="empty">السلة فارغة. اختر من المنيو وستظهر أصنافك هنا.</p>
       <div class="total" id="totalRow" hidden><span>الإجمالي</span><strong id="total">0 ج</strong></div>
 
-      <div class="field">
-        <label for="f-phone">إرسال الطلب إلى رقم <span class="req">*</span></label>
-        <select id="f-phone">
-          <option value="201012189390">01012189390</option>
-          <option value="201093717161">01093717161</option>
-        </select>
-      </div>
+      <input id="f-phone" type="hidden" value="201093717161">
       <div class="field">
         <label for="f-name">الاسم <span class="req">*</span></label>
         <input id="f-name" type="text" autocomplete="name" placeholder="اسمك الكامل">
@@ -381,20 +375,21 @@ var i=function(n,p,d,e){return {n:n,p:p,d:d,e:e}};
 var v=function(n,o,d,e){return {n:n,o:o,d:d,e:e}};
 var C3=function(a,b,c){return [['صغير',a],['وسط',b],['كبير',c]]};
 var SML=function(s,m,l){return [['S',s],['M',m],['L',l]]};
+var HN=function(n,a,b){return v(n,[['عادي',a],['حار',b]])};
 var FS=[['S',25],['M',35],['L',45],['XL',50]];
 var GROUPS=[{id:'food',n:'الأكل'},{id:'drinks',n:'مشروبات وحلويات'}];
 var PIZZA_MOZ='جبنة موتزاريلا - ';
 
 var CATS=[
 {id:'crepe-chicken',g:'food',n:'كريب فراخ',en:'Chicken Crepe',note:'بانية وسوبر كرانشي بثلاثة أحجام.',items:[
-  v('بانية',C3(50,60,70)),
-  v('سوبر كرانشي',C3(80,90,100)),
-  i('ميكس فراخ',90),i('تشيكن رانش',90),i('تشيكن باربيكيو',90),i('تشيكن شيدر صوص',90),i('تشيكن بيج تيستي',90),
-  i('استربس',90),i('زنجر',90),i('زنجر سوبريم',90),i('شاورما فراخ',90),i('فاهيتا فراخ',90),i('شيش طاوق',90),i('كوردن بلو',90),
-  i('صدور مشوية',100),i('استربس شيش',100)
+  v('بانية',C3(50,70,80)),
+  v('سوبر كرانشي',C3(90,100,120)),
+  HN('ميكس فراخ',100,120),HN('تشيكن رانش',100,120),HN('تشيكن باربيكيو',100,120),HN('تشيكن شيدر صوص',100,120),HN('تشيكن بيج تيستي',100,120),
+  HN('استربس',100,120),HN('زنجر',100,120),HN('زنجر سوبريم',100,120),HN('شاورما فراخ',100,120),HN('فاهيتا فراخ',100,120),HN('شيش طاوق',100,120),HN('كوردن بلو',100,120),
+  HN('صدور مشوية',100,120),HN('استربس شيش',100,120)
 ]},
 {id:'crepe-meat',g:'food',n:'كريب لحوم',en:'Meat Crepe',items:[
-  i('كريب سجق',80),i('كريب كبدة',80),i('كريب برجر',80),i('كريب كفتة',90),i('ميكس لحوم',100),i('شاورما لحم',130)
+  i('كريب سجق',90),i('كريب كبدة',90),i('كريب برجر',90),i('كريب كفتة',90),HN('ميكس لحوم',100,120),i('شاورما لحم',130)
 ]},
 {id:'crepe-sea',g:'food',n:'كريب بحري',en:'Seafood Crepe',items:[
   i('جمبري',140),i('سي فود',150)
@@ -403,13 +398,13 @@ var CATS=[
   i('كريب بطاطس',50),i('كريب ميكس جبن',70),i('كريب نوتيلا',70),i('إضافة كونو',20,'تضاف على أي كريب')
 ]},
 {id:'crepiano-mix',g:'food',n:'ميكسات كريبيانو',en:'Crepiano Mixes',items:[
-  i('ميكس كريبيانو',130,'استربس - بانية - شيش طاوق - كونو'),
-  i('أنا أبوها',140,'استربس - شيش - بانية - صوص تكساس - كونو'),
-  i('تشكن أند بيف',140,'كفتة - استربس - بانية - هوت دوج - كونو'),
-  i('أحمس',140,'استربس - صدور مشوي - هالبينو - صوص رانش'),
-  i('نفرتيتي',140,'استربس - شيش طاووق - هوت دوج - صوص بيج تيستي'),
-  i('حتشبسوت',140,'برجر - كفتة - سوسيس - سجق - باربيكيو - كونو'),
-  i('تحتمس',140,'استربس - بانية - شيش - كوردن - صوص شيدر - كونو'),
+  i('ميكس كريبيانو',140,'استربس - بانية - شيش طاوق - كونو'),
+  i('أنا أبوها',150,'استربس - شيش - بانية - صوص تكساس - كونو'),
+  i('تشكن أند بيف',150,'كفتة - استربس - بانية - هوت دوج - كونو'),
+  i('أحمس',150,'استربس - صدور مشوي - هالبينو - صوص رانش'),
+  i('نفرتيتي',150,'استربس - شيش طاووق - هوت دوج - صوص بيج تيستي'),
+  i('حتشبسوت',150,'برجر - كفتة - سوسيس - سجق - باربيكيو - كونو'),
+  i('تحتمس',150,'استربس - بانية - شيش - كوردن - صوص شيدر - كونو'),
   i('الأهرامات',180,'استربس - شيش - صدور مشوي - فرايد تشكن - صوص رانش')
 ]},
 {id:'pizza',g:'food',n:'بيتزا',en:'Pizza',note:'S صغير، M وسط، L كبير.',items:[
@@ -424,8 +419,8 @@ var CATS=[
   v('ميكس لحوم',SML(140,160,180),PIZZA_MOZ+'لحم مفروم - قطع هوت دوج - خضروات'),
   v('تشيكن باربيكيو',SML(140,160,180),PIZZA_MOZ+'قطع شيش - صوص باربيكيو - خضروات'),
   v('تشيكن رانش',SML(140,160,180),PIZZA_MOZ+'قطع صدور مشوي - صوص رانش - خضروات'),
-  i('جمبري',200,PIZZA_MOZ+'جمبري - خضروات'),
-  i('سي فود',220,PIZZA_MOZ+'جمبري - كاليماري - خضروات')
+  i('جمبري',220,PIZZA_MOZ+'جمبري - خضروات'),
+  i('سي فود',240,PIZZA_MOZ+'جمبري - كاليماري - خضروات')
 ]},
 {id:'sandwich',g:'food',n:'سندوتشات',en:'Sandwiches',items:[
   i('بطاطس',30),i('بانية',40),i('كبدة',50),i('سجق',50),i('كفتة فحم',80),i('سوبر كرانشي',80),i('هوت دوج',70),
@@ -452,73 +447,73 @@ var CATS=[
 ]},
 
 {id:'avocado',g:'drinks',n:'أفوكادو',en:'Avocado',note:'الأسعار للحجم L.',items:[
-  i('أفوكادو لبن عسل',80,'','Avocado Milk Honey'),
-  i('أفوكادو مانجو',80,'','Avocado Mango'),
-  i('أفوكادو جرجير',80,'','Avocado Arugula'),
-  i('أفوكادو بلح',80,'','Avocado Data'),
-  i('أفوكادو فراولة',75,'','Avocado Strawberry'),
-  i('أفوكادو كيوي',95,'','Avocado Kiwi'),
-  i('أفوكادو لبن عسل مكسرات',100,'','Avocado Milk Honey Nuts'),
+  i('أفوكادو لبن عسل',100,'','Avocado Milk Honey'),
+  i('أفوكادو مانجو',100,'','Avocado Mango'),
+  i('أفوكادو جرجير',100,'','Avocado Arugula'),
+  i('أفوكادو بلح',100,'','Avocado Data'),
+  i('أفوكادو فراولة',100,'','Avocado Strawberry'),
+  i('أفوكادو كيوي',120,'','Avocado Kiwi'),
+  i('أفوكادو لبن عسل مكسرات',120,'','Avocado Milk Honey Nuts'),
   i('أفوكادو سوبر باور',140,'موز - جرجير - جنسنج - مكسرات','Super Power'),
   i('أفوكادو سوبر مان',125,'كيوي - باشون - موز - حبوب لقاح - مكسرات','Super Man')
 ]},
 {id:'juice',g:'drinks',n:'عصائر فريش',en:'Fresh Juice',note:'الأسعار للحجم L.',items:[
-  i('برتقال',40,'','Orange'),i('ليمون نعناع',35,'','Lemon Mint'),i('جوافة',35,'','Guava'),i('مانجو',45,'','Mango'),
-  i('بلح باللبن',50,'','Dates with Milk'),i('موز باللبن',45,'','Banana with Milk'),i('كيوي',80,'','Kiwi'),
-  i('أناناس',85,'','Pineapple'),i('بطيخ',35,'','Watermelon'),i('كنتالوب',40,'','Cantaloupe'),
-  i('كنتالوب لبن',45,'','Cantaloupe with Milk'),i('جوافة لبن',40,'','Guava with Milk'),
-  i('فراولة',40,'','Strawberry'),i('رمان',45,'','Pomegranate')
+  i('برتقال',50,'','Orange'),i('ليمون نعناع',50,'','Lemon Mint'),i('جوافة',50,'','Guava'),i('مانجو',50,'','Mango'),
+  i('بلح باللبن',50,'','Dates with Milk'),i('موز باللبن',50,'','Banana with Milk'),i('كيوي',80,'','Kiwi'),
+  i('أناناس',85,'','Pineapple'),i('بطيخ',50,'','Watermelon'),i('كنتالوب',50,'','Cantaloupe'),
+  i('كنتالوب لبن',50,'','Cantaloupe with Milk'),i('جوافة لبن',50,'','Guava with Milk'),
+  i('فراولة',50,'','Strawberry'),i('رمان',50,'','Pomegranate')
 ]},
 {id:'cocktail',g:'drinks',n:'كوكتيل',en:'Cocktail',note:'الأسعار للحجم L.',items:[
   i('فروت ميدلي',75,'مانجو - أناناس - جوز هند - أيس كريم','Fruit Medley'),
-  i('مانجو بيتش',65,'مانجو - خوخ - أيس كريم','Mango Peach'),
-  i('فانيليا بانانا كوكتيل',60,'موز - فانيليا - صوص كراميل - أيس كريم','Vanilla Banana Cocktail'),
-  i('فيفا',60,'بلح - موز - أيس كريم','Viva'),
+  i('مانجو بيتش',70,'مانجو - خوخ - أيس كريم','Mango Peach'),
+  i('فانيليا بانانا كوكتيل',70,'موز - فانيليا - صوص كراميل - أيس كريم','Vanilla Banana Cocktail'),
+  i('فيفا',70,'بلح - موز - أيس كريم','Viva'),
   i('هاواي',70,'موز - أناناس - جوافة','Hawaii'),
   i('شيكو بانانا',70,'موز - أيس كريم - صوص شيكولاتة','Chico Banana'),
-  i('فيتامين C',55,'جوافة - ليمون - برتقال','Vitamin C'),
+  i('فيتامين C',70,'جوافة - ليمون - برتقال','Vitamin C'),
   i('الرايق',70,'مانجو - فراولة - زبادي - أيس كريم','El Rayek'),
   i('الفواكه الأربعة',70,'مانجو - فراولة - تفاح - موز','Four Fruits')
 ]},
 {id:'mojito',g:'drinks',n:'موهيتو',en:'Mojito',note:'الأسعار للحجم L.',items:[
-  i('فراولة',45,'','Strawberry'),i('رمان',45,'','Pomegranate'),i('توت',45,'','Berry'),i('أناناس',50,'','Pineapple'),
-  i('جيلي كولا',45,'','Jelly Cola'),i('صن شاين',50,'','Sunshine'),i('بينا كولادا',50,'','Pina Colada'),
-  i('باشن',50,'','Passion'),i('مانجو باشن',55,'','Mango Passion'),i('تفاح أخضر',40,'','Green Apple'),
-  i('كريز باشن',55,'','Cherry Passion'),i('مكس نعناع',60,'','Mint Mix'),i('ليمون نعناع',45,'','Lemon Mint'),
-  i('بلو باشن',50,'','Blue Passion')
+  i('فراولة',45,'','Strawberry'),i('رمان',60,'','Pomegranate'),i('توت',60,'','Berry'),i('أناناس',60,'','Pineapple'),
+  i('جيلي كولا',60,'','Jelly Cola'),i('صن شاين',60,'','Sunshine'),i('بينا كولادا',60,'','Pina Colada'),
+  i('باشن',60,'','Passion'),i('مانجو باشن',60,'','Mango Passion'),i('تفاح أخضر',60,'','Green Apple'),
+  i('كريز باشن',55,'','Cherry Passion'),i('مكس نعناع',60,'','Mint Mix'),i('ليمون نعناع',60,'','Lemon Mint'),
+  i('بلو باشن',60,'','Blue Passion')
 ]},
 {id:'milkshake',g:'drinks',n:'ميلك شيك',en:'Milk Shake',note:'الأسعار للحجم L.',items:[
-  i('فانيليا',60,'','Vanilla'),i('شوكولاتة',60,'','Chocolate'),i('نوتيلا',70,'','Nutella'),i('فراولة',60,'','Strawberry'),
-  i('بلو بيري',60,'','Blueberry'),i('أوريو',70,'','Oreo'),i('لوتس',65,'','Lotus'),i('فرابتشينو',80,'','Frappuccino'),
-  i('توينكز',70,'','Twinkies'),i('هوهوز',70,'','HoHos')
+  i('فانيليا',70,'','Vanilla'),i('شوكولاتة',70,'','Chocolate'),i('نوتيلا',70,'','Nutella'),i('فراولة',70,'','Strawberry'),
+  i('بلو بيري',70,'','Blueberry'),i('أوريو',70,'','Oreo'),i('لوتس',80,'','Lotus'),i('فرابتشينو',80,'','Frappuccino'),
+  i('توينكز',80,'','Twinkies'),i('هوهوز',80,'','HoHos')
 ]},
 {id:'smoothie',g:'drinks',n:'سموزي',en:'Smoothie',note:'الأسعار للحجم L.',items:[
-  i('ليمون نعناع',35,'','Lemon Mint'),i('ليمون نعناع كيوي',70,'','Lemon Mint Kiwi'),i('بطيخ',45,'','Watermelon'),
-  i('بطيخ فانيليا',50,'','Watermelon Vanilla'),i('مانجو',50,'','Mango'),i('مانجو أيس كريم',55,'','Mango Ice Cream'),
-  i('مانجو خوخ',60,'','Mango Peach'),i('فراولة',45,'','Strawberry'),i('فراولة نعناع',45,'','Strawberry Mint'),
+  i('ليمون نعناع',50,'','Lemon Mint'),i('ليمون نعناع كيوي',70,'','Lemon Mint Kiwi'),i('بطيخ',50,'','Watermelon'),
+  i('بطيخ فانيليا',60,'','Watermelon Vanilla'),i('مانجو',60,'','Mango'),i('مانجو أيس كريم',60,'','Mango Ice Cream'),
+  i('مانجو خوخ',60,'','Mango Peach'),i('فراولة',50,'','Strawberry'),i('فراولة نعناع',50,'','Strawberry Mint'),
   i('فراولة كيوي نعناع',60,'','Strawberry Kiwi Mint'),i('أناناس',75,'','Pineapple'),i('أناناس كيوي',85,'','Pineapple Kiwi'),
-  i('كيوي',75,'','Kiwi'),i('مانجو كيوي أناناس',80,'','Mango Kiwi Pineapple'),i('جوافة كيوي نعناع',60,'','Guava Kiwi Mint'),
+  i('كيوي',80,'','Kiwi'),i('مانجو كيوي أناناس',80,'','Mango Kiwi Pineapple'),i('جوافة كيوي نعناع',60,'','Guava Kiwi Mint'),
   i('توت',50,'','Berry'),i('توت نعناع',50,'','Berry Mint'),i('توت مانجو',65,'','Berry Mango'),
   i('أناناس جوز هند',75,'','Pineapple Coconut'),i('مانجو كيوي',70,'','Mango Kiwi'),i('مانجو كيوي نعناع',75,'','Mango Kiwi Mint')
 ]},
 {id:'freska',g:'drinks',n:'فريسكا',en:'Freska',items:[
-  i('نوتيلا',35,'','Chocolate'),i('وايت شوكلت',35,'','White Chocolate'),i('موز وعسل',35,'','Banana & Honey'),
-  i('هوهوز',40,'','HoHos'),i('توينكز',40,'','Twinkies'),i('أوريو',40,'','Oreo'),i('لوتس',40,'','Lotus'),
+  i('نوتيلا',45,'','Chocolate'),i('وايت شوكلت',45,'','White Chocolate'),i('موز وعسل',45,'','Banana & Honey'),
+  i('هوهوز',50,'','HoHos'),i('توينكز',50,'','Twinkies'),i('أوريو',50,'','Oreo'),i('لوتس',50,'','Lotus'),
   i('دبي',50,'','Dubai'),i('موز نوتيلا',50,'','Banana Nutella')
 ]},
-{id:'fruit-salad',g:'drinks',n:'سلطة فواكه',en:'Fruit Salad',note:'السعر حسب الحجم: S 25، M 35، L 45، XL 50.',items:[
-  v('قنبلة',FS,'','Bomb'),v('بليلة',FS,'','Rocket'),v('موس شوكلت',FS,'','Mousse Chocolate'),
+{id:'fruit-salad',g:'drinks',n:'سلطة فواكه',en:'Fruit Salad',note:'قنبلة وبليلة وموس شوكلت بحجم L. الرز بلبن حسب الحجم: S 25، M 35، L 45، XL 50.',items:[
+  i('قنبلة',70,'','Bomb'),i('بليلة',70,'','Rocket'),i('موس شوكلت',60,'','Mousse Chocolate'),
   v('رز بلبن مانجا',FS,'','Mango Rice Pudding'),v('رز بلبن نوتيلا',FS,'','Nutella Rice Pudding'),
   v('رز بلبن لوتس',FS,'','Lotus Rice Pudding')
 ]},
 {id:'pancake',g:'drinks',n:'بان كيك',en:'Pan Cake',items:[
-  i('وايت شوكلت',40,'','White Chocolate'),i('نوتيلا',40,'','Chocolate'),i('لوتس',45,'','Lotus'),i('فستق',70,'','Pistachio'),
-  i('موز نوتيلا',50,'','Banana Nutella'),i('فراولة',50,'','Strawberry'),i('مانجو',45,'','Mango')
+  i('وايت شوكلت',50,'','White Chocolate'),i('نوتيلا',50,'','Chocolate'),i('لوتس',70,'','Lotus'),i('فستق',70,'','Pistachio'),
+  i('موز نوتيلا',50,'','Banana Nutella'),i('فراولة',50,'','Strawberry'),i('مانجو',50,'','Mango')
 ]},
 {id:'waffle',g:'drinks',n:'وافل',en:'Waffle',items:[
-  i('نوتيلا',60,'','Nutella'),i('وايت شوكلت',60,'','White Chocolate'),i('لوتس',60,'','Lotus'),i('كيندر',70,'','Kinder'),
-  i('تو سيزون',70,'','Two Seasons'),i('فور سيزون',90,'','Four Seasons'),i('مكسرات',90,'','Nuts'),
-  i('بيستاشيو',100,'','Pistachio'),i('فواكه',80,'','Fruits')
+  i('نوتيلا',70,'','Nutella'),i('وايت شوكلت',70,'','White Chocolate'),i('لوتس',80,'','Lotus'),i('كيندر',80,'','Kinder'),
+  i('تو سيزون',80,'','Two Seasons'),i('فور سيزون',100,'','Four Seasons'),i('مكسرات',100,'','Nuts'),
+  i('بيستاشيو',100,'','Pistachio'),i('فواكه',100,'','Fruits')
 ]}
 ];
 
@@ -644,7 +639,7 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify({cart:st.cart,phone:
 function load(){
   try{
     var d=JSON.parse(localStorage.getItem(KEY)||'null');
-    if(d){st.cart=d.cart&&typeof d.cart==='object'?d.cart:{};f.phone.value=d.phone||'201012189390';f.name.value=d.name||'';f.addr.value=d.addr||'';f.extra.value=d.extra||''}
+    if(d){st.cart=d.cart&&typeof d.cart==='object'?d.cart:{};f.name.value=d.name||'';f.addr.value=d.addr||'';f.extra.value=d.extra||''}
   }catch(e){}
 }
 function renderCart(){
@@ -801,4 +796,3 @@ if(cnt&&window.MutationObserver){
 </script>
 
 </body></html>
-
